@@ -5,6 +5,7 @@ import Nav from "./components/Nav.jsx";
 import ContactUs from "./pages/ContactUs.jsx";
 import OurWork from "./pages/OurWork.jsx";
 import {Route, Routes} from 'react-router-dom';
+import MovieDetail from "./pages/MovieDetail.jsx";
 
 function App() {
    const [count, setCount] = useState(0);
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<AboutUs/>}/>
             <Route path="/contact" element={<ContactUs/>}/>
             <Route path="/work" element={<OurWork/>}/>
+            <Route path="/work/:id" element={<MovieDetail/>}/>
          </Routes>
       </div>
    );
