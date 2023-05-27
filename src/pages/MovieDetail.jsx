@@ -1,45 +1,52 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
-import {useParams} from "react-router";
-import {MovieState} from "../movieState.js";
+import { useParams } from "react-router-dom";
+import { MovieState } from "../movieState";
+import { motion } from "framer-motion";
+import { pageAnimation } from "../animation";
 
 const MovieDetail = () => {
-   const params = useParams();
-   console.log(params);
+   const { id } = useParams();
    const [movies, setMovies] = useState(MovieState);
    const [movie, setMovie] = useState(null);
 
    useEffect(() => {
-      const currentMovie = movies.filter((stateMovie) => stateMovie.url === params.id);
-      setMovie(currentMovie[0]);
-   }, [movies, params]);
+      const currentMovie = movies.find((stateMovie) => stateMovie.url === id);
+      setMovie(currentMovie);
+   }, [movies, id]);
 
+   if (!movie) {
+      return <div>Loading...</div>; // Display a loading state while fetching movie details
+   }
+
+   const { title, mainImg, awards, secondaryImg } = movie;
 
    return (
-      <>
-         {movie &&
-            <Details>
-               <Headline>
-                  <h2>{movie.title}</h2>
-                  <img src={movie.mainImg} alt={movie.title}/>
-               </Headline>
-               <Awards>
-                  {movie.awards.map(award => (
-                     <Award title={award.title} description={award.description} key={award.title}/>
-                  ))}
-               </Awards>
-               <ImageDisplay>
-                  <img src={movie.secondaryImg} alt="secondary img"/>
-               </ImageDisplay>
-            </Details>
-         }
-      </>
-
+      <Details exit="exit" variants={pageAnimation} initial="hidden" animate="visible">
+         <Headline>
+            <h2>{title}</h2>
+            <img src={mainImg} alt={title} />
+         </Headline>
+         <Awards>
+            {awards.map((award) => (
+               <Award key={award.title}>
+                  <h3>{award.title}</h3>
+                  <div className="line" />
+                  <p>{award.description}</p>
+               </Award>
+            ))}
+         </Awards>
+         <ImageDisplay>
+            <img src={secondaryImg} alt="secondary img" />
+         </ImageDisplay>
+      </Details>
    );
 };
-const Details = styled.div`
+
+const Details = styled(motion.div)`
   color: white;
 `;
+
 const Headline = styled.div`
   min-height: 90vh;
   padding-top: 20vh;
@@ -51,51 +58,49 @@ const Headline = styled.div`
     left: 50%;
     transform: translate(-50%, -10%);
   }
+
   img {
     width: 100%;
     height: 100vh;
     object-fit: cover;
   }
 `;
+
 const Awards = styled.div`
   min-height: 80vh;
   display: flex;
   margin: 5rem 10rem;
   align-items: center;
   justify-content: space-around;
-`
-const AwardStyle = styled.div`
-padding: 5rem;
+`;
+
+const Award = styled.div`
+  padding: 5rem;
+
   h3 {
     font-size: 2rem;
   }
+
   .line {
     width: 100%;
     background: #23d997;
     height: 0.5rem;
     margin: 1rem 0rem;
   }
+
   p {
     padding: 2rem 0rem;
   }
-`
+`;
+
 const ImageDisplay = styled.div`
   min-height: 50vh;
+
   img {
     width: 100%;
     height: 100vh;
     object-fit: cover;
   }
-`
-
-const Award = ({title,description}) => {
-   return (
-      <AwardStyle>
-         <h3>{title}</h3>
-         <div className="line"></div>
-         <p>{description}</p>
-      </AwardStyle>
-   )
-}
+`;
 
 export default MovieDetail;

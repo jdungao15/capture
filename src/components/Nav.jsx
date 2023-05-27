@@ -1,21 +1,26 @@
 import React from 'react';
 import styled from "styled-components";
 import {Link} from "react-router-dom";
-
+import {motion} from "framer-motion";
 const Nav = () => {
+   const tap = {
+      scale: 1.1,
+      transition: {duration: 1},
+   }
+
    return (
       <StyledNav>
          <h1><a id="logo" href="#">Capture</a></h1>
          <ul>
-            <li>
+            <motion.li whileHover={tap}>
                <Link to="/"> 1. About Us </Link>
-            </li>
-            <li>
-               <Link to="/work">2. Our Work</Link>
-            </li>
-            <li>
-               <Link to="/contact">3. Contact Us</Link>
-            </li>
+            </motion.li>
+            <motion.li whileHover={tap}>
+               <Link to="work">2. Our Work</Link>
+            </motion.li>
+            <motion.li whileHover={tap}>
+               <Link to="contact">3. Contact Us</Link>
+            </motion.li>
          </ul>
       </StyledNav>
    );
