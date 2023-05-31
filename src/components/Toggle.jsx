@@ -3,7 +3,7 @@ import {motion} from "framer-motion";
 import {titleAnim} from "../animation.js";
 
 export const Toggle = ({children, title, layoutId}) => {
-   const [toggle, setToggle] = useState(true);
+   const [toggle, setToggle] = useState(false);
    // const paraAnim = {
    //    hidden: {
    //       opacity: 0,
