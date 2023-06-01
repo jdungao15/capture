@@ -1,4 +1,4 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -12,6 +12,11 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
 
+  }
+  html {
+    @media (max-width: 1700px) {
+      font-size: 90%;
+    }
   }
 
   button {

@@ -4,7 +4,7 @@ import {useAnimation} from "framer-motion";
 
 const useScroll = () => {
    const controls = useAnimation();
-   const [element,view] = useInView({threshold: 0.5})
+   const [element,view] = useInView({threshold: 0.3})
    useEffect(() => {
       view ? controls.start('visible'): controls.start('hidden')
    })

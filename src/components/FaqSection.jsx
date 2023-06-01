@@ -4,7 +4,7 @@ import {About} from '../styles.js';
 import {Toggle} from "./Toggle.jsx";
 import {LayoutGroup} from "framer-motion";
 import useScroll from "./useScroll.jsx";
-import {scrollReveal} from "../animation.js";
+import { scrollReveal } from '../animation.js';
 
 const FaqSection = () => {
    const [element,controls] = useScroll();
@@ -14,19 +14,19 @@ const FaqSection = () => {
          <LayoutGroup>
             <Toggle layoutId='faq1' title="How do I Start?">
                <div className="answer">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                      Aliquam, asperiores commodi cumque distinctio eius error
-                     illum nam nostrum, perspiciatis quas quos recusandae unde?
+                       illum nam nostrum, perspiciatis quas quos recusandae unde?
                      Itaque labore laudantium, nesciunt quos repellat
                      veniam?</p>
                </div>
 
             </Toggle>
-            <Toggle layoutId='faq2' title="Daily Schedule">
-               <div className="answer">
+            <Toggle layout  Id='faq2' title="Daily Schedule">
+               <div className="answer">   
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                      Alias aliquid assumenda consequuntur cumque expedita, illo
-                     molestias officiis perspiciatis placeat quam quasi similique
+                     molestias officiis perspiciatis placeat quam quasi similiqueas
                      soluta veritatis! Animi, aspernatur odio? Aliquid, eligendi,
                      quibusdam.</p>
                </div>

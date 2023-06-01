@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { MovieState } from "../movieState";
@@ -6,41 +6,46 @@ import { motion } from "framer-motion";
 import { pageAnimation } from "../animation";
 
 const MovieDetail = () => {
-   const { id } = useParams();
-   const [movies, setMovies] = useState(MovieState);
-   const [movie, setMovie] = useState(null);
+  const { id } = useParams();
+  const [movies, setMovies] = useState(MovieState);
+  const [movie, setMovie] = useState(null);
 
-   useEffect(() => {
-      const currentMovie = movies.find((stateMovie) => stateMovie.url === id);
-      setMovie(currentMovie);
-   }, [movies, id]);
+  useEffect(() => {
+    const currentMovie = movies.find((stateMovie) => stateMovie.url === id);
+    setMovie(currentMovie);
+  }, [movies, id]);
 
-   if (!movie) {
-      return <div>Loading...</div>; // Display a loading state while fetching movie details
-   }
+  if (!movie) {
+    return <div>Loading...</div>; // Display a loading state while fetching movie details
+  }
 
-   const { title, mainImg, awards, secondaryImg } = movie;
+  const { title, mainImg, awards, secondaryImg } = movie;
 
-   return (
-      <Details exit="exit" variants={pageAnimation} initial="hidden" animate="visible">
-         <Headline>
-            <h2>{title}</h2>
-            <img src={mainImg} alt={title} />
-         </Headline>
-         <Awards>
-            {awards.map((award) => (
-               <Award key={award.title}>
-                  <h3>{award.title}</h3>
-                  <div className="line" />
-                  <p>{award.description}</p>
-               </Award>
-            ))}
-         </Awards>
-         <ImageDisplay>
-            <img src={secondaryImg} alt="secondary img" />
-         </ImageDisplay>
-      </Details>
-   );
+  return (
+    <Details
+      exit="exit"
+      variants={pageAnimation}
+      initial="hidden"
+      animate="visible"
+    >
+      <Headline>
+        <h2>{title}</h2>
+        <img src={mainImg} alt={title} />
+      </Headline>
+      <Awards>
+        {awards.map((award) => (
+          <Award key={award.title}>
+            <h3>{award.title}</h3>
+            <div className="line" />
+            <p>{award.description}</p>
+          </Award>
+        ))}
+      </Awards>
+      <ImageDisplay>
+        <img src={secondaryImg} alt="secondary img" />
+      </ImageDisplay>
+    </Details>
+  );
 };
 
 const Details = styled(motion.div)`
@@ -72,6 +77,10 @@ const Awards = styled.div`
   margin: 5rem 10rem;
   align-items: center;
   justify-content: space-around;
+  @media (max-width: 1500px) {
+    display: block;
+    margin: 2rem 2rem;
+  }
 `;
 
 const Award = styled.div`
