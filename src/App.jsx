@@ -8,7 +8,6 @@ import {Route, Routes, useLocation} from 'react-router-dom';
 import MovieDetail from "./pages/MovieDetail.jsx";
 //Animation
 import {AnimatePresence} from "framer-motion";
-
 function App() {
    const location = useLocation();
    return (
