@@ -1,4 +1,3 @@
-loimport React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { pageAnimation, titleAnim } from "../animation.js";
